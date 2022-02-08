@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#app,html, body{
+    height: 100%;
+}
+
+.icon-weibiaoti562,icon-tianchongxing-{
+    font-size: 20px;
+}
