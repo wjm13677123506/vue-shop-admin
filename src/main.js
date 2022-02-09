@@ -12,6 +12,13 @@ Vue.config.productionTip = false
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 Vue.prototype.$http = axios
 
+axios.interceptors.request.use((config) => {
+  const token = sessionStorage.getItem('token')
+  config.headers.Authorization = token
+  // console.log(config)
+  return config
+})
+
 new Vue({
   router,
   render: h => h(App)

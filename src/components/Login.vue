@@ -13,6 +13,7 @@
             prefix-icon="iconfont icon-tianchongxing-"
             v-model="form.password"
             show-password
+            @keypress.enter="login"
           ></el-input>
         </el-form-item>
         <el-form-item class="aa">
@@ -60,10 +61,10 @@ export default {
     },
     login() {
       this.$refs.form.validate(async (boolean) => {
-        console.log(boolean)
+        // console.log(boolean)
         if (!boolean) return
         const { data: res } = await this.$http.post('login', this.form)
-        console.log(res)
+        // console.log(res)
         if (res.meta.status !== 200) return this.$message.error('登录失败')
         this.$message.success('登录成功')
         sessionStorage.setItem('token', res.data.token)
