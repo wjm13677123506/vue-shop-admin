@@ -70,11 +70,11 @@ export default {
     },
     async getMenu() {
       const { data: res } = await this.$http.get('menus')
-      console.log(res)
       if (res.meta.status !== 200) {
         return this.$message.error('获取菜单列表失败')
       }
       console.log('获取菜单列表成功')
+      console.log(res)
       this.menu = res.data
     },
     saveNavPath(path) {
