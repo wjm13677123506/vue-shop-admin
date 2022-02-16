@@ -14,6 +14,11 @@ import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
 import axios from 'axios'
 
+// 导入进度条插件
+import NProgress from 'nprogress'
+// 导入进度条样式
+import 'nprogress/nprogress.css'
+
 Vue.config.productionTip = false
 
 Vue.component('treeTable', ZkTable)
@@ -24,9 +29,17 @@ axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 Vue.prototype.$http = axios
 
 axios.interceptors.request.use((config) => {
+  NProgress.start()
   const token = sessionStorage.getItem('token')
   config.headers.Authorization = token
   // console.log(config)
+  return config
+})
+
+// 在response拦截器中，隐藏进度条
+axios.interceptors.response.use(config => {
+  // 当进入response拦截器，表示请求已经结束，我们就结束进度条
+  NProgress.done()
   return config
 })
 
