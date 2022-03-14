@@ -54,6 +54,7 @@ export default {
         101: 'iconfont icon-shangpin',
         102: 'iconfont icon-danju',
         145: 'iconfont icon-baobiao',
+        110: 'iconfont icon-yonghuming',
       },
       menuCollapse: false,
       ativeNavPath: '/users',
