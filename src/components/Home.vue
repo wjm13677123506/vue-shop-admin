@@ -6,30 +6,14 @@
     </el-header>
     <el-container>
       <el-aside :width="menuCollapse ? '70px' : '200px'">
-        <div class="menuCollapseBtn" @click="menuCollapse = !menuCollapse">
-          |||
-        </div>
-        <el-menu
-          background-color="#363d40"
-          text-color="#fff"
-          active-text-color="#66b1ff"
-          unique-opened
-          :collapse="menuCollapse"
-          :collapse-transition="false"
-          router
-          :default-active="ativeNavPath"
-        >
+        <div class="menuCollapseBtn" @click="menuCollapse = !menuCollapse">|||</div>
+        <el-menu background-color="#363d40" text-color="#fff" active-text-color="#66b1ff" unique-opened :collapse="menuCollapse" :collapse-transition="false" router :default-active="ativeNavPath">
           <el-submenu :index="item.id + ''" v-for="item in menu" :key="item.id">
             <template slot="title">
               <i :class="iconObject[item.id]"></i>
               <span>{{ item.authName }}</span>
             </template>
-            <el-menu-item
-              :index="'/' + subItem.path"
-              v-for="subItem in item.children"
-              :key="subItem.id"
-              @click="saveNavPath('/' + subItem.path)"
-            >
+            <el-menu-item :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveNavPath('/' + subItem.path)">
               <i class="el-icon-setting"></i>
               <span slot="title">{{ subItem.authName }}</span>
             </el-menu-item>
@@ -63,6 +47,7 @@ export default {
   created() {
     this.getMenu()
     this.ativeNavPath = sessionStorage.getItem('activePath')
+    console.log(11)
   },
   methods: {
     logout() {
@@ -87,7 +72,7 @@ export default {
 }
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .el-container {
   height: 100%;
 }
